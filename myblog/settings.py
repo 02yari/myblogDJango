@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-vq#w9&e%8+un4eobbtt*r@+4=2_!omx_(gd@(+6ymqe@gs#@3@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://myblogdjango-production-9290.up.railway.app/']
 
 
 # Application definition
@@ -123,3 +123,9 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+# Redirigir después de login/logout
+
+# Redirigir al login
+LOGIN_REDIRECT_URL = 'blog:post_list'
+LOGOUT_REDIRECT_URL = 'blog:login'
+
