@@ -128,3 +128,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_REDIRECT_URL = 'blog:post_list'
 LOGOUT_REDIRECT_URL = 'blog:login'
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://web-production-c5135.up.railway.app",
+]
