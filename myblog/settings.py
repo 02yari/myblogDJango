@@ -15,6 +15,7 @@ import dj_database_url
 import os
 from dotenv import load_dotenv
 load_dotenv()
+from urllib.parse import quote_plus
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -85,10 +86,15 @@ WSGI_APPLICATION = "myblog.wsgi.application"
 #     }
 # }
 
+user = quote_plus(os.getenv("DB_USER"))
+password = quote_plus(os.getenv("DB_PASSWORD"))
+host = os.getenv("DB_HOST")
+port = os.getenv("DB_PORT")
+name = os.getenv("DB_NAME")
+
 DATABASES = {
     "default": dj_database_url.config(
-        default=os.getenv("DATABASE_URL") or
-                f"postgres://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
+        default=f"postgres://{user}:{password}@{host}:{port}/{name}"
     )
 }
 
