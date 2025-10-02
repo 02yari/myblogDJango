@@ -97,6 +97,7 @@ password = quote_plus(os.getenv("DB_PASSWORD", ""))
 host = os.getenv("DB_HOST", "")
 port = os.getenv("DB_PORT", "")
 name = os.getenv("DB_NAME", "")
+                 
 
 DATABASES = {
     "default": dj_database_url.config(
@@ -153,5 +154,5 @@ LOGIN_REDIRECT_URL = 'blog:post_list'
 LOGOUT_REDIRECT_URL = 'blog:login'
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://web-production-c5135.up.railway.app",
+    "https://web-production-7eeca.up.railway.app",
 ]
