@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 from .models import Post, Comment
-from .forms import CommentForm
+from .forms import CommentForm, ProfileForm, SignUpForm
 
 def post_list(request):
     """Vista para mostrar la lista de posts publicados"""
@@ -41,9 +43,7 @@ def post_detail(request, slug):
         'new_comment': new_comment,
         'comment_form': comment_form
     })
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from .forms import SignUpForm
+
 
 def signup(request):
     if request.method == 'POST':
@@ -59,3 +59,15 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'blog/signup.html', {'form': form})
 
+def profile_view(request):
+    return render(request, 'profile.html', {'user': request.user})
+
+def profile_edit(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = ProfileForm(instance=request.user.profile)
+    return render(request, 'profile_edit.html', {'form': form})
