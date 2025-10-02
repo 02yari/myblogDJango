@@ -17,6 +17,11 @@ from dotenv import load_dotenv
 load_dotenv()
 from urllib.parse import quote_plus
 
+# Solo carga dotenv si estás en local
+if os.environ.get("RAILWAY_ENVIRONMENT_NAME") is None:
+    from dotenv import load_dotenv
+    load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,6 +35,7 @@ SECRET_KEY = "django-insecure-vq#w9&e%8+un4eobbtt*r@+4=2_!omx_(gd@(+6ymqe@gs#@3@
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
 
 ALLOWED_HOSTS = [".up.railway.app", "localhost", "127.0.0.1"]
 
